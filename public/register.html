@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Register</h1>
+    <p class="subtitle">Use your <strong>@qiu.edu.my</strong> email to create an account.</p>
+  </header>
+
+  <main class="container">
+    <nav class="card">
+      <a class="btn btn-secondary" href="/">Home</a>
+      <a class="btn btn-secondary" href="login.html">Login</a>
+    </nav>
+
+    <section class="card">
+      <form id="registerForm" class="form">
+        <div class="field">
+          <label for="email">QIU Email</label>
+          <input id="email" name="email" type="email" placeholder="yourname@qiu.edu.my" required />
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" minlength="6" required />
+          <small class="hint">Minimum 6 characters.</small>
+        </div>
+
+        <button class="btn" type="submit">Create Account</button>
+        <p id="msg" class="msg"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="./js/register.js"></script>
+</body>
+</html>

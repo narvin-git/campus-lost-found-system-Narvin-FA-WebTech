@@ -19,10 +19,20 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   setMsg("Submitting...");
 
+  // Require login (JWT)
+  const token = localStorage.getItem("token");
+  if (!token) {
+    setMsg("Please login first.", true);
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 700);
+    return;
+  }
+
   const data = {
     title: form.title.value.trim(),
     description: form.description.value.trim(),
-    category: form.dataset.category,   // ✅ fixed
+    category: form.dataset.category, // ✅ fixed
     location: form.location.value.trim(),
     date: form.date.value,
     contact: form.contact.value.trim(),
@@ -34,7 +44,10 @@ form.addEventListener("submit", async (e) => {
   try {
     const res = await fetch("/api/items", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
       body: JSON.stringify(data),
     });
 

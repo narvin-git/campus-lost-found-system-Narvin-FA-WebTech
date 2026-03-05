@@ -15,6 +15,9 @@ exports.createItem = async (req, res, next) => {
   try {
     let { title, description, category, location, date, contact } = req.body;
 
+    // Logged-in user id (owner)
+    const userId = req.user.id;
+
     // Server-side validation (required)
     if (!title || !description || !category || !location || !date || !contact) {
       return res.status(400).json({ error: "All fields are required." });
@@ -30,9 +33,9 @@ exports.createItem = async (req, res, next) => {
     contact = clean(contact);
 
     const [result] = await pool.execute(
-      `INSERT INTO items (title, description, category, location, date, contact, status)
-       VALUES (?, ?, ?, ?, ?, ?, 'Active')`,
-      [title, description, category, location, date, contact] // parameterized => SQL injection prevention
+      `INSERT INTO items (title, description, category, location, date, contact, status, user_id)
+       VALUES (?, ?, ?, ?, ?, ?, 'Active', ?)`,
+      [title, description, category, location, date, contact, userId] // parameterized => SQL injection prevention
     );
 
     res.status(201).json({ message: "Item created", id: result.insertId });
@@ -83,6 +86,18 @@ exports.updateStatus = async (req, res, next) => {
 
     if (!Number.isInteger(id)) return res.status(400).json({ error: "Invalid id." });
 
+    // Check permission: owner OR admin
+    const [rows] = await pool.execute("SELECT user_id FROM items WHERE id = ?", [id]);
+    if (!rows.length) return res.status(404).json({ error: "Item not found." });
+
+    const itemUserId = rows[0].user_id;
+    const isAdmin = req.user?.role === "admin";
+    const isOwner = itemUserId === req.user?.id;
+
+    if (!isAdmin && !isOwner) {
+      return res.status(403).json({ error: "Not allowed (owner or admin only)." });
+    }
+
     status = clean(status);
     if (!validStatus(status)) {
       return res.status(400).json({ error: "Status must be Active, Claimed, or Resolved." });
@@ -101,6 +116,18 @@ exports.deleteItem = async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id)) return res.status(400).json({ error: "Invalid id." });
+
+    // Check permission: owner OR admin
+    const [rows] = await pool.execute("SELECT user_id FROM items WHERE id = ?", [id]);
+    if (!rows.length) return res.status(404).json({ error: "Item not found." });
+
+    const itemUserId = rows[0].user_id;
+    const isAdmin = req.user?.role === "admin";
+    const isOwner = itemUserId === req.user?.id;
+
+    if (!isAdmin && !isOwner) {
+      return res.status(403).json({ error: "Not allowed (owner or admin only)." });
+    }
 
     const [result] = await pool.execute("DELETE FROM items WHERE id = ?", [id]);
     if (result.affectedRows === 0) return res.status(404).json({ error: "Item not found." });
