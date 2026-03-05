@@ -23,7 +23,7 @@ const limiter = rateLimit({
   max: 100, // 100 requests per 15 min per IP
   message: "Too many requests, please try again later.",
 });
-app.use(limiter);
+app.use("/api",limiter);
 
 // Static frontend
 app.use(express.static(path.join(__dirname, "public")));
