@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Item Details</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Item Details</h1>
+    <p class="subtitle">View details, update status, or delete report.</p>
+  </header>
+
+  <main class="container">
+    <nav class="card">
+      <a class="btn btn-secondary" href="/">Home</a>
+      <a class="btn btn-secondary" href="lost-items.html">Lost Items</a>
+      <a class="btn btn-secondary" href="found-items.html">Found Items</a>
+    </nav>
+
+    <section class="card" id="detailsCard">
+      <p>Loading...</p>
+    </section>
+
+    <section class="card">
+      <h2>Actions</h2>
+      <div class="grid">
+        <button class="btn btn-secondary" id="btnClaimed" type="button">Mark as Claimed</button>
+        <button class="btn btn-secondary" id="btnResolved" type="button">Mark as Resolved</button>
+        <button class="btn" id="btnDelete" type="button" style="border-color:crimson;background:crimson;">
+          Delete Report
+        </button>
+      </div>
+      <p id="msg" class="msg"></p>
+    </section>
+  </main>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/item.js"></script>
+</body>
+</html>

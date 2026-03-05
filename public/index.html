@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campus Lost & Found</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Campus Lost & Found</h1>
+    <p class="subtitle">Report and track lost & found items on campus.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Report</h2>
+      <div class="grid">
+        <a class="btn" href="report-lost.html">Report Lost Item</a>
+        <a class="btn" href="report-found.html">Report Found Item</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Browse</h2>
+      <div class="grid">
+        <a class="btn btn-secondary" href="lost-items.html">View Lost Items</a>
+        <a class="btn btn-secondary" href="found-items.html">View Found Items</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Stats</h2>
+      <div id="stats" class="stats">Loading...</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© 2026 Campus Lost & Found System</small>
+  </footer>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/home.js"></script>
+</body>
+</html>

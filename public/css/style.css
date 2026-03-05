@@ -1,0 +1,133 @@
+:root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+  }
+  
+  .header {
+    padding: 24px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+  }
+  
+  .subtitle { margin: 8px 0 0; color: var(--muted); }
+  
+  .container {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+  
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 14px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 1px solid #111827;
+    color: #fff;
+    background: #111827;
+  }
+  
+  .btn-secondary {
+    background: #ffffff;
+    color: #111827;
+  }
+  
+  .stats {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--muted);
+  }
+  
+  .statBox {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    min-width: 160px;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 18px;
+    color: var(--muted);
+  }
+
+  .form {
+    display: grid;
+    gap: 12px;
+  }
+  
+  .field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  
+  .field input, .field textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-family: inherit;
+  }
+  
+  .msg {
+    margin: 8px 0 0;
+    color: var(--muted);
+  }
+
+
+  .tableWrap {
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .table th, .table td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .linkBtn {
+    display: inline-block;
+    padding: 8px 10px;
+    border: 1px solid #111827;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #111827;
+    background: #fff;
+  }
