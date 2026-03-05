@@ -9,7 +9,7 @@ const itemsRoutes = require("./routes/items.routes");
 
 const app = express();
 
-// Security + middleware
+// Security middleware : helmet sets secure HTTP headers including CSP
 app.use(helmet());
 app.use(cors());
 
