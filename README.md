@@ -32,3 +32,11 @@ A web application that allows users to report and track lost and found items on 
    npm run dev
 4. Open:
    http://localhost:3000
+
+## API Endpoints
+
+GET /api/items  
+GET /api/items/:id  
+POST /api/items  
+PUT /api/items/:id  
+DELETE /api/items/:id
