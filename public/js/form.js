@@ -41,7 +41,7 @@ form.addEventListener("submit", async (e) => {
     const out = await res.json();
     if (!res.ok) throw new Error(out.error || "Failed to submit");
 
-    setMsg("Submitted successfully! Redirecting...");
+    setMsg("Report submitted successfully! Redirecting...");
 
     setTimeout(() => {
       window.location.href = data.category === "Lost" ? "lost-items.html" : "found-items.html";
