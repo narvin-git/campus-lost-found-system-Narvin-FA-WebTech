@@ -42,14 +42,16 @@ form.addEventListener("submit", async (e) => {
   if (err) return setMsg(err, true);
 
   try {
-    const res = await fetch("/api/items", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
+  const token = localStorage.getItem("token");
+
+  const res = await fetch("/api/items", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
 
     const out = await res.json();
     if (!res.ok) throw new Error(out.error || "Failed to submit");
