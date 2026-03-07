@@ -1,9 +1,23 @@
 // Fetch helper
 async function apiGet(url) {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Request failed: ${res.status}`);
-    return res.json();
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(url, {
+    headers: {
+      "Authorization": token ? `Bearer ${token}` : ""
+    }
+  });
+
+  if (res.status === 401) {
+    localStorage.removeItem("token");
+    window.location.href = "/login.html";
+    return;
   }
+
+  if (!res.ok) throw new Error("Request failed");
+
+  return res.json();
+}
   
   // Prevent XSS when displaying text in HTML
   function escapeHtml(str) {
