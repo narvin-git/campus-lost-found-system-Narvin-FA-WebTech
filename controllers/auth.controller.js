@@ -71,8 +71,13 @@ async function setAdminPassword(req, res, next) {
     if (email !== "admin@qiu.edu.my") {
       return res.status(400).json({ error: "Only admin@qiu.edu.my allowed here" });
     }
-    if (!password || password.length < 6) {
-      return res.status(400).json({ error: "Password must be at least 6 characters" });
+    
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}$/;
+
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        error: "Password must be at least 6 characters and include 1 uppercase letter, 1 number, and 1 symbol."
+      });
     }
 
     const hash = await bcrypt.hash(password, 10);
