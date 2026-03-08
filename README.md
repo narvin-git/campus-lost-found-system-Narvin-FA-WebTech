@@ -1,8 +1,13 @@
 # Campus Lost & Found Management System
 
+Live Demo: https://campus-lost-found-system-narvin-fa.onrender.com
+
 A web application that allows users to report and track lost and found items on campus.
 
+---
+
 ## Features
+
 - Report lost items
 - Report found items
 - View lost items
@@ -10,19 +15,44 @@ A web application that allows users to report and track lost and found items on 
 - View item details
 - Update item status (Claimed / Resolved)
 - Delete reports
-- 404 page
+- User authentication (JWT)
+- 404 error page
+
+---
 
 ## Tech Stack
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js, Express
-- Database: MySQL
+
+**Frontend**
+- HTML
+- CSS
+- JavaScript
+
+**Backend**
+- Node.js
+- Express.js
+
+**Database**
+- MySQL (Railway)
+
+---
 
 ## Security
-- Helmet (security headers + CSP)
-- Rate limiting (express-rate-limit)
-- Input validation + sanitization
-- SQL injection prevention (parameterized queries)
-- XSS prevention (escapeHtml)
+
+The system includes several security measures:
+
+- Helmet (HTTP security headers + Content Security Policy)
+- Rate limiting using `express-rate-limit`
+- Input validation and sanitization
+- SQL injection prevention using parameterized queries
+- XSS protection using `escapeHtml`
+- JWT authentication for protected routes
+
+---
+
+## Environment Variables
+
+Create a `.env` file based on `.env.example` and configure the following:
+
 
 ## Run Locally
 1. Install dependencies:
@@ -40,3 +70,4 @@ GET /api/items/:id
 POST /api/items  
 PUT /api/items/:id  
 DELETE /api/items/:id
+
